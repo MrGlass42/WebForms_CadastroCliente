@@ -1,0 +1,16 @@
+C:\Users\MrGlassMASTER\source\repos\TesteSemantix\Modelos\bin\Debug\netstandard2.0\Modelos.deps.json
+C:\Users\MrGlassMASTER\source\repos\TesteSemantix\Modelos\bin\Debug\netstandard2.0\Modelos.dll
+C:\Users\MrGlassMASTER\source\repos\TesteSemantix\Modelos\bin\Debug\netstandard2.0\Modelos.pdb
+C:\Users\MrGlassMASTER\source\repos\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.AssemblyInfoInputs.cache
+C:\Users\MrGlassMASTER\source\repos\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.AssemblyInfo.cs
+C:\Users\MrGlassMASTER\source\repos\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.csproj.CoreCompileInputs.cache
+C:\Users\MrGlassMASTER\source\repos\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.dll
+C:\Users\MrGlassMASTER\source\repos\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.pdb
+D:\TesteSemantix\Modelos\bin\Debug\netstandard2.0\Modelos.deps.json
+D:\TesteSemantix\Modelos\bin\Debug\netstandard2.0\Modelos.dll
+D:\TesteSemantix\Modelos\bin\Debug\netstandard2.0\Modelos.pdb
+D:\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.csprojAssemblyReference.cache
+D:\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.AssemblyInfoInputs.cache
+D:\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.AssemblyInfo.cs
+D:\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.dll
+D:\TesteSemantix\Modelos\obj\Debug\netstandard2.0\Modelos.pdb

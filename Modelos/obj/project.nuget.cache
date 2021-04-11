@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "qcfE5Pslu6FB4QrDok6FI9Hamd2FX926kenqRGgUoSjumH2C2pgoG2B8CO17O93f7waXLhyoC3FZOWXoYWlPOw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MrGlassMASTER\\source\\repos\\TesteSemantix\\Modelos\\Modelos.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MrGlassMASTER\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
