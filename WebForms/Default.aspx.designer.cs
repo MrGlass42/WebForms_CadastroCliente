@@ -24,6 +24,15 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.Table TabelaClientes;
 
         /// <summary>
+        /// span_erro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl span_erro;
+
+        /// <summary>
         /// CampoId control.
         /// </summary>
         /// <remarks>
@@ -84,7 +93,7 @@ namespace WebForms
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CampoCEP;
+        protected global::System.Web.UI.WebControls.TextBox CampoCEP;
 
         /// <summary>
         /// CampoRua control.

@@ -77,7 +77,7 @@ namespace Database
             // Insere Cliente
             string Query = "";
             Query += "INSERT INTO Clientes (Nome, Email, RG , CPF)";
-            Query += string.Format("VALUES ('{0}','{1}','{2}','{3}');SELECT SCOPE_IDENTITY();", cliente.Nome, cliente.Email, cliente.RG, cliente.CPF);
+            Query += string.Format("VALUES ('{0}','{1}','{2}','{3}');SELECT SCOPE_IDENTITY();", cliente.Nome, cliente.Email, cliente.RGSemMascara(), cliente.CPFSemMascara());
 
             int IdCliente = 0;
             using (_handyMan = new BdHandyMan()) { IdCliente = _handyMan.ExecutaComando(Query); }
@@ -85,7 +85,7 @@ namespace Database
             // Insere Telefone
             Query = "";
             Query += "INSERT INTO Telefones (Numero, ClienteId)";
-            Query += string.Format("VALUES ('{0}',{1});", cliente.Telefone.Numero, IdCliente);
+            Query += string.Format("VALUES ('{0}',{1});", cliente.Telefone.NumeroSemMascara(), IdCliente);
 
             using (_handyMan = new BdHandyMan()) { _handyMan.ExecutaComando(Query); }
 
@@ -93,7 +93,7 @@ namespace Database
             Query = "";
             Query += "INSERT INTO Enderecos (Rua, Bairro, Numero, Cidade, Estado, Complemento, CEP, ClienteId)";
             Query += string.Format("VALUES ('{0}','{1}','{2}','{3}','{4}','{5}', '{6}', '{7}');", cliente.Endereco.Rua, cliente.Endereco.Bairro, cliente.Endereco.Numero, cliente.Endereco.Cidade,
-                cliente.Endereco.Estado, cliente.Endereco.Complemento, cliente.Endereco.CEP, IdCliente);
+                cliente.Endereco.Estado, cliente.Endereco.Complemento, cliente.Endereco.CEPSemMascara(), IdCliente);
 
             using (_handyMan = new BdHandyMan()) { _handyMan.ExecutaComando(Query); }
 
@@ -106,8 +106,8 @@ namespace Database
             Query += "UPDATE Clientes SET ";
             Query += string.Format(" Nome = '{0}', ", cliente.Nome);
             Query += string.Format(" Email = '{0}', ", cliente.Email);
-            Query += string.Format(" RG = '{0}', ", cliente.RG);
-            Query += string.Format(" CPF = '{0}' ", cliente.CPF);
+            Query += string.Format(" RG = '{0}', ", cliente.RGSemMascara());
+            Query += string.Format(" CPF = '{0}' ", cliente.CPFSemMascara());
             Query += string.Format(" WHERE Id = '{0}';", cliente.Id);
 
             using (_handyMan = new BdHandyMan()) { _handyMan.ExecutaComando(Query); }
@@ -119,7 +119,7 @@ namespace Database
             Query += string.Format(" Numero = '{0}', ", cliente.Endereco.Numero);
             Query += string.Format(" Cidade = '{0}', ", cliente.Endereco.Cidade);
             Query += string.Format(" Estado = '{0}', ", cliente.Endereco.Estado);
-            Query += string.Format(" CEP = '{0}', ", cliente.Endereco.CEP);
+            Query += string.Format(" CEP = '{0}', ", cliente.Endereco.CEPSemMascara());
             Query += string.Format(" Complemento = '{0}' ", cliente.Endereco.Complemento);
             Query += string.Format(" WHERE ClienteId = '{0}'; ", cliente.Id);
 
@@ -127,7 +127,7 @@ namespace Database
 
             Query = "";
             Query += "UPDATE Telefones SET ";
-            Query += string.Format(" Numero = '{0}' ", cliente.Telefone.Numero);
+            Query += string.Format(" Numero = '{0}' ", cliente.Telefone.NumeroSemMascara());
             Query += string.Format(" WHERE ClienteId = '{0}'; ", cliente.Id);
 
             using (_handyMan = new BdHandyMan()) { _handyMan.ExecutaComando(Query); }

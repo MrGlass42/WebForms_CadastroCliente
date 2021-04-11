@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebForms._Default" EnableEventValidation="false" %>
+﻿<%@ Page Title="Cadastro Clientes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebForms._Default" EnableEventValidation="false" Async="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -45,6 +45,25 @@
     </div>
 
     <!-- Modal Cadastro Cliente  -->
+    <div id="modal_erro" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Erro Detectado !</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="span_erro" runat="server"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Entendido !</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Cadastro Cliente  -->
     <div id="modal_cadastro_cliente" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -68,7 +87,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>E-mail:</label>
-                                <input type="text" runat="server" id="CampoEmail" class="form-control" />
+                                <input type="text" runat="server" id="CampoEmail" class="form-control"/>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -100,7 +119,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>CEP:</label>
-                                <input type="text" runat="server" id="CampoCEP" class="form-control" />
+                                <asp:TextBox autopostback="true" runat="server" CssClass="form-control" ID="CampoCEP" OnTextChanged="CampoCEP_TextChanged"></asp:TextBox>
                             </div>
                         </div>
                     </div>

@@ -1,11 +1,10 @@
 ﻿using Modelos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Database;
+using Integrations;
+using Validadores;
 
 namespace WebForms
 {
@@ -13,7 +12,27 @@ namespace WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            span_erro.InnerText = "";
             AtualizarTabela();
+        }
+        protected async void CampoCEP_TextChanged(object sender, EventArgs e)
+        {
+            var CEP = (sender as TextBox).Text;
+
+            try
+            {
+                if (!CEP.Equals(""))
+                {
+                    var Endereco = await ViaCepIntegration.GetEndereco(CEP);
+                    AtualizarCamposEndereco(Endereco);
+                }
+            }
+            catch (Exception)
+            {
+
+                span_erro.InnerText = $"CEP {CEP} não encontrado !";
+                (sender as TextBox).Text = "";
+            }
         }
 
         protected void ExcluirCliente_Click(object sender, EventArgs e)
@@ -33,35 +52,53 @@ namespace WebForms
 
         protected void btnSalvarCliente_Click(object sender, EventArgs e)
         {
-            var Endereco = new Endereco
+            try
             {
-                Rua = CampoRua.Value,
-                Bairro = CampoBairro.Value,
-                Numero = CampoNumero.Value,
-                Cidade = CampoCidade.Value,
-                Estado = CampoEstado.Value,
-                CEP = CampoCEP.Value,
-                Complemento = CampoComplemento.Value
-            };
+                var Endereco = new Endereco
+                {
+                    Rua = CampoRua.Value,
+                    Bairro = CampoBairro.Value,
+                    Numero = CampoNumero.Value,
+                    Cidade = CampoCidade.Value,
+                    Estado = CampoEstado.Value,
+                    CEP = CampoCEP.Text,
+                    Complemento = CampoComplemento.Value
+                };
 
-            var Telefone = new Telefone { Numero = CampoTelefone.Value };
+                var Telefone = new Telefone { Numero = CampoTelefone.Value };
 
-            var Cliente = new Cliente
+                var Cliente = new Cliente
+                {
+                    Id = !CampoId.Value.Equals("") ? Convert.ToInt32(CampoId.Value) : 0,
+                    Nome = CampoNome.Value,
+                    Email = CampoEmail.Value,
+                    Telefone = Telefone,
+                    RG = CampoRG.Value,
+                    CPF = CampoCPF.Value,
+                    Endereco = Endereco
+                };
+
+                ClienteValidador.Validar(Cliente);
+                ClienteDAO.Salvar(Cliente);
+
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception error)
             {
-                Id = !CampoId.Value.Equals("") ? Convert.ToInt32(CampoId.Value) : 0,
-                Nome = CampoNome.Value,
-                Email = CampoEmail.Value,
-                Telefone = Telefone,
-                RG = CampoRG.Value,
-                CPF = CampoCPF.Value,
-                Endereco = Endereco
-            };
-
-            ClienteDAO.Salvar(Cliente);
-
-            Response.Redirect(Request.RawUrl);
+                span_erro.InnerText = error.Message;
+            }
         }
 
+        private void AtualizarCamposEndereco(Endereco endereco)
+        {
+            CampoCEP.Text = endereco.CEP;
+            CampoRua.Value = endereco.Rua;
+            CampoBairro.Value = endereco.Bairro;
+            CampoNumero.Value = endereco.Numero;
+            CampoCidade.Value = endereco.Cidade;
+            CampoEstado.Value = endereco.Estado;
+            CampoComplemento.Value = endereco.Complemento;
+        }
 
         private void PreencherModal(Cliente Cliente)
         {
@@ -78,7 +115,7 @@ namespace WebForms
             CampoNumero.Value = Cliente.Endereco.Numero;
             CampoCidade.Value = Cliente.Endereco.Cidade;
             CampoEstado.Value = Cliente.Endereco.Estado;
-            CampoCEP.Value = Cliente.Endereco.CEP;
+            CampoCEP.Text = Cliente.Endereco.CEP;
             CampoComplemento.Value = Cliente.Endereco.Complemento;
         }
 
@@ -118,6 +155,5 @@ namespace WebForms
                 TabelaClientes.Rows.Add(tableRow);
             });
         }
-
     }
 }

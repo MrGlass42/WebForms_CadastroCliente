@@ -10,7 +10,7 @@ namespace Database
 
         public BdHandyMan()
         {
-            string BdServerName = @"DESKTOP-C46EB5G\SQLEXPRESS";
+            string BdServerName = @"SERVIDOR AQUI !!!";
             string BdName = "Semantix";
 
             conexao = new SqlConnection(@"data source=" + BdServerName + ";Integrated Security=SSPI;Initial Catalog=" + BdName);
